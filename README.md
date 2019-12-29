@@ -8,4 +8,5 @@ that should be it
 
 
 this creates a "bad links" file (if you had bad links) after it's done
+
 you can use that with ripme or jdownloader or whatever you want to download whatever else you need to

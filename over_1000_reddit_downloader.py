@@ -52,11 +52,16 @@ while curleng >= 0:
 
         name = cool[curleng].title
         name = ''.join(c for c in name if c in valid_chars)
-        
-        r = requests.get(url, allow_redirects=True)
-        open(name+"."+ext, 'wb').write(r.content)
 
-        print("success: "+url+' ("'+name+'")')
+        try:
+            r = requests.get(url, allow_redirects=True)
+            open(name+"."+ext, 'wb').write(r.content)
+            print("success: "+url+' ("'+name+'")')
+        except:
+            print("fail: error: "+url)
+            badlinks.append(url)
+        
+        
     
     else:
         print("fail: "+url)

@@ -2,12 +2,19 @@ import psaw
 import os
 import requests
 import string
+import random
 from psaw import PushshiftAPI
+
+
+def randomString(stringLength=10):
+    """Generate a random string of fixed length """
+    letters = string.ascii_letters+string.digits
+    return ''.join(random.choice(letters) for i in range(stringLength))
 
 api = PushshiftAPI()
 
 sub = input("what subreddit?: ")
-lim = int(input("what's the limit? (0 for all, will take a while): "))
+lim = int(input("what's the limit? (0 for none, will take a while): "))
 
 if lim > 0:
     cool = list(api.search_submissions(
@@ -54,11 +61,12 @@ while curleng >= 0:
         name = ''.join(c for c in name if c in valid_chars)
 
         try:
+            rstring = randomString(10)
             r = requests.get(url, allow_redirects=True)
-            open(name+"."+ext, 'wb').write(r.content)
-            print("success: "+url+' ("'+name+'")')
+            open(name+" "+rstring+"."+ext, 'wb').write(r.content)
+            print("success: "+url+' ("'+name+'", random string: '+rstring+')')
         except:
-            print("fail: error: "+url)
+            print("error: "+url)
             badlinks.append(url)
         
         

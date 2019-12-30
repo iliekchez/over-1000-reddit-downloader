@@ -83,8 +83,11 @@ if (len(badlinks) != 0):
     f = open("badlinks.txt", 'w+')
     f.write("")
     for link in badlinks:
+	try:
         f = open("badlinks.txt", 'a')
         f.write(link+"\n")
+	except:
+		print("there's been an error with a link, won't add it to the list")
     print("a file containing the bad links has been created")
 
 input("press enter to leave")

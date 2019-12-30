@@ -20,7 +20,12 @@ print("creating file...")
 f = open("links.txt", 'w+')
 f.write("")
 print("adding links to file...")
+miss = 0
 for g in gg:
-    f = open("links.txt", 'a')
-    f.write(g.url+"\n")
+	try:
+		f = open("links.txt", 'a')
+		f.write(g.url+"\n")
+	except:
+		miss=miss+1
+		print("oof there's an error, hope you don't mind too much that there's "+str(miss)+" missing")
 input("all done, press enter to quit")
